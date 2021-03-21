@@ -1,13 +1,11 @@
 package br.com.dataa.eleicao.entidade;
 
+import br.com.dataa.eleicao.dto.CargoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="cargo")
@@ -17,8 +15,14 @@ import javax.persistence.Table;
 public class Cargo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nome_cargo", nullable = false)
     private String nomeCargo;
+
+    public CargoDTO paraDTO() {
+        CargoDTO dto = new CargoDTO(this.getId(), this.nomeCargo);
+        return dto;
+    }
 }

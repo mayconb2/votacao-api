@@ -19,7 +19,7 @@ public class EleicaoControlador {
         this.eleicaoServico = eleicaoServico;
     }
 
-    @GetMapping(value ="listar")
+    @GetMapping(value ="/listar")
     public List<EleicaoDTO> listarTodos() {
         return eleicaoServico.listarTodos();
     }
@@ -34,5 +34,7 @@ public class EleicaoControlador {
     public EleicaoDTO criarEleicao(@RequestBody EleicaoDTO dto ) {
         return eleicaoServico.criarEleicao(dto);
     }
+
+
 
 }
