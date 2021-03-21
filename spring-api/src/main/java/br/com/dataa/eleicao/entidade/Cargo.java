@@ -1,4 +1,4 @@
-package br.com.dataa.eleicao.entidades;
+package br.com.dataa.eleicao.entidade;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="candidato")
+@Table(name="cargo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

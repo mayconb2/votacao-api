@@ -1,4 +1,4 @@
-package br.com.dataa.eleicao.entidades;
+package br.com.dataa.eleicao.entidade;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

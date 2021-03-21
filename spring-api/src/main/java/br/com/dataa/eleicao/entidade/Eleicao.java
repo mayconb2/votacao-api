@@ -1,12 +1,12 @@
-package br.com.dataa.eleicao.entidades;
+package br.com.dataa.eleicao.entidade;
 
+import br.com.dataa.eleicao.dto.EleicaoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="eleicao")
@@ -30,5 +30,15 @@ public class Eleicao {
     @JoinColumn(name = "cargo_votado", nullable = false, referencedColumnName = "id")
     @OneToOne(targetEntity = Cargo.class, fetch=FetchType.LAZY)
     private Cargo cargoVotado;
+
+    public EleicaoDTO paraDTO() {
+        EleicaoDTO dto = new EleicaoDTO();
+        dto.setId(this.getId());
+        dto.setNomeEleicao(this.getNomeEleicao());
+        dto.setDataIni(this.getDataInicio());
+        dto.setDataFim(this.getDataFim());
+        dto.setCargoVotado(this.getCargoVotado().getNomeCargo());
+        return dto;
+    }
 
 }
