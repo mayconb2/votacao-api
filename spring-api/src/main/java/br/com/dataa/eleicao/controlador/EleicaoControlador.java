@@ -3,9 +3,8 @@ package br.com.dataa.eleicao.controlador;
 import br.com.dataa.eleicao.dto.EleicaoDTO;
 import br.com.dataa.eleicao.servico.EleicaoServico;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +22,17 @@ public class EleicaoControlador {
     @GetMapping(value ="listar")
     public List<EleicaoDTO> listarTodos() {
         return eleicaoServico.listarTodos();
+    }
+
+    @GetMapping(value = "/{id}")
+    public EleicaoDTO listarPorID(@PathVariable Long id) {
+        return eleicaoServico.buscaPorId(id);
+    }
+
+    @PostMapping(value = "")
+    @ResponseStatus(HttpStatus.CREATED)
+    public EleicaoDTO criarEleicao(@RequestBody EleicaoDTO dto ) {
+        return eleicaoServico.criarEleicao(dto);
     }
 
 }

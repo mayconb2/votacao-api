@@ -16,6 +16,7 @@ import java.time.LocalDate;
 public class Eleicao {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nome_eleicao", nullable = false)
@@ -37,7 +38,8 @@ public class Eleicao {
         dto.setNomeEleicao(this.getNomeEleicao());
         dto.setDataIni(this.getDataInicio());
         dto.setDataFim(this.getDataFim());
-        dto.setCargoVotado(this.getCargoVotado().getNomeCargo());
+        dto.setCargoVotado(this.getCargoVotado().getId());
+        dto.setNomeCargoVotado(this.getCargoVotado().getNomeCargo());
         return dto;
     }
 

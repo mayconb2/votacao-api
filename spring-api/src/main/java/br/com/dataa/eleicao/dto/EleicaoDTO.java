@@ -1,5 +1,8 @@
 package br.com.dataa.eleicao.dto;
 
+import br.com.dataa.eleicao.entidade.Cargo;
+import br.com.dataa.eleicao.entidade.Eleicao;
+import br.com.dataa.eleicao.repositorio.CargoRepositorio;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +18,23 @@ public class EleicaoDTO {
     private String nomeEleicao;
     private LocalDate dataIni;
     private LocalDate dataFim;
-    private String cargoVotado;
+    private Long cargoVotado;
+    private String nomeCargoVotado;
+
+    public Eleicao paraEntidade(CargoRepositorio cargoRepositorio) {
+        Eleicao eleicaoEntidade = new Eleicao();
+
+        Cargo cargoEntidade = cargoRepositorio.findById(this.getCargoVotado()).orElseThrow(
+                () -> new RuntimeException("Não foi encontrada nenhum cargo com Id" + id)
+        );
+
+        eleicaoEntidade.setId(this.getId());
+        eleicaoEntidade.setNomeEleicao(this.getNomeEleicao());
+        eleicaoEntidade.setDataInicio(this.getDataIni());
+        eleicaoEntidade.setDataFim(this.getDataFim());
+        eleicaoEntidade.setCargoVotado(cargoEntidade);
+
+        return eleicaoEntidade;
+    }
 
 }
